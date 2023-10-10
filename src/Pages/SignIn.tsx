@@ -1,0 +1,118 @@
+import { useState, FormEvent, ChangeEvent } from "react"
+import { PasswordInput, TextInput, Divider } from "@mantine/core"
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
+import { useNavigate, Link } from "react-router-dom"
+import { GoogleButton } from "../Components/GoogleButton"
+
+
+const SignIn = () => {
+
+  const navigate = useNavigate()
+
+  const [formData, setFormData] = useState({
+    email:'',
+    password:''
+  })
+
+  const {email, password} = formData
+
+  const handleChange = (e:ChangeEvent<HTMLInputElement>)=>{
+    setFormData((prevState)=>({
+      ...prevState,
+      [e.target.name]:e.target.value
+
+    }))
+
+  }
+
+  const handleSubmit = async (e:FormEvent<HTMLFormElement>)=>{
+    e.preventDefault()
+
+    try {
+
+      const auth = getAuth()
+      const userCredentials = await signInWithEmailAndPassword(auth, email, password)
+
+      if(userCredentials.user){
+        navigate('/profile')
+        
+      }
+      
+    } catch (error) {
+      console.log(error);
+      
+      
+    }
+
+  }
+
+  return (
+
+    <div className="flex justify-center">
+
+      <div className="flex flex-col space-y-5  mt-20 p-8 w-[30rem]">
+      
+      {/* first div with providers and text */}
+      <div className="flex flex-col space-y-5">
+        <p>Welcome back, login with</p>
+        <GoogleButton >
+          Google
+        </GoogleButton>
+
+        <Divider label="Or continue with email" labelPosition="center" my="sm" />
+
+
+      </div>
+     <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
+
+      <div>
+      <label htmlFor="emailInput">Email</label>
+      <TextInput      
+      type="text"
+      name="email"
+      value={email}
+      onChange={handleChange}
+       className=" bg-zinc-800 rounded-xl "
+       />
+      </div>
+
+      <div>
+      <label htmlFor="PasswordInput">Password</label>
+       <PasswordInput       
+       name="password"
+       value={password}
+       onChange={handleChange}       
+        className="bg-zinc-800 rounded-xl "
+       
+       />
+
+      </div>
+
+      <div className="flex flex-row justify-between">
+
+        <Link to='/signup'>
+        <p className="text-xs text-zinc-500 hover:underline">
+          Don't have an account? Sign up
+
+        </p>
+        </Link>
+        
+
+        <button>
+          press me
+        </button>
+
+      </div>
+
+
+      
+    </form>
+
+      </div>
+    
+
+    </div>
+  
+  )
+}
+export default SignIn
