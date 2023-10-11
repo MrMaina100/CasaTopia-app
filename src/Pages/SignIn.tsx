@@ -3,9 +3,12 @@ import { PasswordInput, TextInput, Divider } from "@mantine/core"
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
 import { useNavigate, Link } from "react-router-dom"
 import { GoogleButton } from "../Components/GoogleButton"
+import { GithuhButton } from "../Components/GithuhButton"
+
 
 
 const SignIn = () => {
+  
 
   const navigate = useNavigate()
 
@@ -55,9 +58,17 @@ const SignIn = () => {
       {/* first div with providers and text */}
       <div className="flex flex-col space-y-5">
         <p>Welcome back, login with</p>
-        <GoogleButton >
+        <div className="flex justify-between space-x-8">
+          <GoogleButton>
           Google
         </GoogleButton>
+
+        <GithuhButton>
+          Github
+        </GithuhButton>
+
+        </div>
+        
 
         <Divider label="Or continue with email" labelPosition="center" my="sm" />
 
@@ -72,7 +83,7 @@ const SignIn = () => {
       name="email"
       value={email}
       onChange={handleChange}
-       className=" bg-zinc-800 rounded-xl "
+       
        />
       </div>
 
@@ -82,8 +93,7 @@ const SignIn = () => {
        name="password"
        value={password}
        onChange={handleChange}       
-        className="bg-zinc-800 rounded-xl "
-       
+               
        />
 
       </div>
