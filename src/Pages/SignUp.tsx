@@ -1,10 +1,12 @@
 import { useState, FormEvent, ChangeEvent } from "react"
-import { PasswordInput, TextInput} from "@mantine/core"
+import { PasswordInput, TextInput, Divider} from "@mantine/core"
 import { useNavigate } from "react-router-dom"
 import { getAuth, createUserWithEmailAndPassword,updateProfile } from "firebase/auth"
 import { setDoc, doc,} from "firebase/firestore"
 import { db} from '../firebaseConfig'
-import GoogleAuth from "../Components/GoogleAuth"
+import { Link } from "react-router-dom"
+import { GoogleButton } from "../Components/GoogleButton"
+import { GithuhButton } from "../Components/GithuhButton"
 type form = {
   name: string,
   email: string,
@@ -74,46 +76,87 @@ const SignUp = () => {
   }
   return (
 
-    <>
+    <div className="flex justify-center" >
 
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="name">Name</label>
-      <TextInput
-      variant="unstyled"
+    <div className="flex flex-col space-y-5  mt-20 p-8 w-[30rem]">
+
+         {/* first div with providers and text */}
+      <div className="flex flex-col space-y-5">
+        <p>Welcome to CasaTopia, register with</p>
+        <div className="flex justify-between space-x-8">
+          <GoogleButton>
+          Google
+        </GoogleButton>
+
+        <GithuhButton>
+          Github
+        </GithuhButton>
+
+        </div>
+        
+
+        <Divider label="Or continue with email" labelPosition="center" my="sm" />
+
+
+      </div>
+     <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
+      <div>
+      <label htmlFor="emailInput">Name</label>
+      <TextInput      
+      type="text"
       name="name"
       value={name}
       onChange={handleChange}
-      className=" w-48 border border-white"
-      
-      />
-      <label htmlFor="email"> email </label>
-      <TextInput 
-      variant="unstyled"
+       
+       />
+      </div>
+
+
+    <div>
+      <label htmlFor="emailInput">Email</label>
+      <TextInput      
+      type="text"
       name="email"
       value={email}
       onChange={handleChange}
-       className="w-48 border border-white"
-       />
-      
-      <label htmlFor="passwod">Password</label>
-
-       <PasswordInput
-       variant="unstyled"
-       name="password"
-       value={password}
-       onChange={handleChange}
-       className="w-48 border border-white"
        
        />
+      </div>
       
-      <button type="submit">press me</button>
+      <div>
+      <label htmlFor="PasswordInput">Password</label>
+       <PasswordInput       
+       name="password"
+       value={password}
+       onChange={handleChange}       
+               
+       />
 
-      <GoogleAuth/>
+      </div>
+       <div className="flex flex-row justify-between">
+
+        <Link to='/signin'>
+        <p className="text-xs text-zinc-500 hover:underline">
+         Already have an account? Login
+
+        </p>
+        </Link>
+        
+
+        <button type="submit">
+          press me
+        </button>
+
+      </div>
 
      
     </form>    
     
-    </>
+
+      </div>
+
+   
+    </div>
      
   )
 }
