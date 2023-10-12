@@ -3,7 +3,8 @@ import { PasswordInput, TextInput, Divider } from "@mantine/core"
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
 import { useNavigate, Link } from "react-router-dom"
 import { GoogleButton } from "../Components/GoogleButton"
-import { GithuhButton } from "../Components/GithuhButton"
+import { GithuhButton } from "../Components/GithubButton"
+import Button from "../Components/Button"
 
 
 
@@ -98,7 +99,7 @@ const SignIn = () => {
 
       </div>
 
-      <div className="flex flex-row justify-between">
+      <div className="flex flex-row items-center justify-between mt-2">
 
         <Link to='/signup'>
         <p className="text-xs text-zinc-500 hover:underline">
@@ -108,9 +109,7 @@ const SignIn = () => {
         </Link>
         
 
-        <button>
-          press me
-        </button>
+        <Button>Sign in</Button>
 
       </div>
 

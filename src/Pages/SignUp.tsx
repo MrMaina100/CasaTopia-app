@@ -6,7 +6,8 @@ import { setDoc, doc,} from "firebase/firestore"
 import { db} from '../firebaseConfig'
 import { Link } from "react-router-dom"
 import { GoogleButton } from "../Components/GoogleButton"
-import { GithuhButton } from "../Components/GithuhButton"
+import { GithuhButton } from "../Components/GithubButton"
+import Button from "../Components/Button"
 type form = {
   name: string,
   email: string,
@@ -133,7 +134,7 @@ const SignUp = () => {
        />
 
       </div>
-       <div className="flex flex-row justify-between">
+       <div className="flex flex-row items-center justify-between">
 
         <Link to='/signin'>
         <p className="text-xs text-zinc-500 hover:underline">
@@ -143,9 +144,10 @@ const SignUp = () => {
         </Link>
         
 
-        <button type="submit">
-          press me
-        </button>
+        <Button>
+          Sign up
+
+        </Button>
 
       </div>
 

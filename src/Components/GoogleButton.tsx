@@ -74,5 +74,5 @@ export function GoogleButton(props: ButtonProps & React.ComponentPropsWithoutRef
       }
       
    }
-  return <Button onClick={handleClick} leftSection={<GoogleIcon />} variant="unstyled" {...props}  className="w-48 rounded-full border bg-zinc-800"/>;
+  return <Button onClick={handleClick} leftSection={<GoogleIcon />} variant="unstyled" {...props}  className="w-1/2 rounded-full border bg-zinc-800"/>;
 }
