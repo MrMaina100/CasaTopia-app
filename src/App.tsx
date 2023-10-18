@@ -8,20 +8,30 @@ import Profile from './Pages/Profile';
 import SignIn from './Pages/SignIn';
 import Offers from './Pages/Offers';
 import PrivateRoute from './Components/PrivateRoute';
+import Category from './Pages/Category';
+import CreateListing from './Pages/CreateListing';
+import Listing from './Pages/Listing';
+import {Toaster} from 'sonner'
+
 
 const App = () => {
   return (
     <MantineProvider defaultColorScheme='auto'>
+      <Toaster/>   
+   
       <Router>
         <Routes>
           <Route path='/' element={<Explore/>}/>
           <Route path='/offers' element={<Offers/>}/>
+          <Route path='/category/:categoryname' element={<Category/>}/>
           <Route path='/profile' element={<PrivateRoute />} >
              <Route path='/profile' element={<Profile/>} />
           </Route>
           <Route path='/signin' element={<SignIn/>}/>
           <Route path='/signup' element={<SignUp/>}/>
           <Route path='/forgotpassword' element={<ForgotPassword/>} />
+          <Route path='createlisting' element={<CreateListing/>}/>
+          <Route path='/category/:categoryName/:listingId' element={<Listing/>}/>
         </Routes>
       </Router>
 
