@@ -11,6 +11,7 @@ import PrivateRoute from './Components/PrivateRoute';
 import Category from './Pages/Category';
 import CreateListing from './Pages/CreateListing';
 import Listing from './Pages/Listing';
+import Contact from './Pages/Contact';
 import {Toaster} from 'sonner'
 
 
@@ -32,6 +33,7 @@ const App = () => {
           <Route path='/forgotpassword' element={<ForgotPassword/>} />
           <Route path='createlisting' element={<CreateListing/>}/>
           <Route path='/category/:categoryName/:listingId' element={<Listing/>}/>
+          <Route path='/contact/:landLordId' element={<Contact/>}/>
         </Routes>
       </Router>
 
