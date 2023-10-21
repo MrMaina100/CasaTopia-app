@@ -1,6 +1,14 @@
 import { Link } from "react-router-dom"
-import { Card, Group, Badge, CardSection } from "@mantine/core"
-const ListingItem = ({listing, id}) => {
+import {TrashIcon} from '@radix-ui/react-icons'
+import { Card, CardSection } from "@mantine/core"
+import { DocumentData } from "firebase/firestore"
+
+type propsTypes = {
+   listing:DocumentData,
+   id:string,
+   onDelete?:()=>void
+}
+const ListingItem = ({listing, id, onDelete}:propsTypes) => {
   return (
     <div className="flex flex-col space-y-5 md:flex-row md:space-y-0 md:space-x-5">
     
@@ -26,6 +34,13 @@ const ListingItem = ({listing, id}) => {
          </Card>
 
       </Link>
+
+      {
+         onDelete&&(
+            <TrashIcon onClick={()=>onDelete()}/>
+
+         )
+      }
      
     </div>
   )

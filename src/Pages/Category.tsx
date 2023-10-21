@@ -38,6 +38,7 @@ const Category = () => {
             data:doc.data()
           })
         })
+        
 
         setListings(listings)
         setLoading(false)
