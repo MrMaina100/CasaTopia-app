@@ -2,10 +2,12 @@ import { useState, useEffect, useRef, FormEvent} from "react"
 import { getAuth, onAuthStateChanged } from "firebase/auth"
 import { useNavigate } from "react-router-dom"
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { addDoc, collection } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 import { v4 as uuidv4 } from 'uuid'
 import { TextInput, Textarea,} from "@mantine/core"
 import Button from "../Components/Button"
+import { formData } from "../types";
 
 type geoLocationType = {
    lat:number
@@ -17,7 +19,7 @@ type geoLocationType = {
 const CreateListing = () => {
    const [geolocationEnabled, setGeoLocationEnabled] = useState(true)
    const [loading, setLoading] = useState(true)
-   const [formData, setFormData]= useState({
+   const [formData, setFormData]= useState<formData>({
       type:'rent',
       name:'',
       bedrooms:1,
@@ -66,7 +68,7 @@ const CreateListing = () => {
 
       setLoading(true)
 
-    if(discountedPrice>= regularPrice){
+    if(discountedPrice!>= regularPrice){
       setLoading(false)
       console.log('something about prices');
       
@@ -76,7 +78,7 @@ const CreateListing = () => {
     //this is the variable that store the latitude and longitude that later on gets submmited to firebase.
 
 
-    let geoLocation:geoLocationType = {
+    let geolocation:geoLocationType = {
       lat:0,
       lng:0
     }
@@ -91,8 +93,8 @@ const CreateListing = () => {
       const data = await res.json()
       console.log(data);
 
-      geoLocation.lat =data.results[0]?.geometry.location.lat ?? 0,
-      geoLocation.lng = data.results[0]?.geometry.location.lng ?? 0
+      geolocation.lat =data.results[0]?.geometry.location.lat ?? 0,
+      geolocation.lng = data.results[0]?.geometry.location.lng ?? 0
       location = data.status === 'ZERO_RESULTS' ? undefined : data.results[0]?.formatted_address
 
       if(location === undefined || location.includes('undefined') ){
@@ -105,8 +107,8 @@ const CreateListing = () => {
       
 
     }else{
-      geoLocation.lng = latitude
-      geoLocation.lng = longitude
+      geolocation.lat = latitude
+      geolocation.lng = longitude
       location = address
     }
 
@@ -154,14 +156,34 @@ const CreateListing = () => {
     }
 
     const imageUrls = await Promise.all(
-      [...images].map((image)=> storeImages(image))
+      [...images!].map((image)=> storeImages(image))
     ).catch(()=>{
       setLoading(false)
       console.log('images not uploaded');
       
     })
 
+    const formDataCopy = {
+      ...formData,
+      imageUrls,
+      geolocation,
+      location
+    }
+   
+    
+    formDataCopy.location = address
+    delete formDataCopy.address
+    delete formDataCopy.images
+   //  location && (formDataCopy.geolocation = location)
+    !formDataCopy.offer && delete formDataCopy.discountedPrice
+
+    const docRef = await addDoc(collection(db, 'listings'), formDataCopy)
+
     setLoading(false)
+    
+    console.log("success:listing saved");
+    navigate(`/category/${formDataCopy.type}/${docRef.id}`)
+    
 
    
       
