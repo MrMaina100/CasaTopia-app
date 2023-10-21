@@ -13,11 +13,14 @@ import CreateListing from './Pages/CreateListing';
 import Listing from './Pages/Listing';
 import Contact from './Pages/Contact';
 import {Toaster} from 'sonner'
-
+import { SlidingTabBar } from './Components/Footer';
 
 const App = () => {
   return (
-    <MantineProvider defaultColorScheme='auto'>
+    <MantineProvider defaultColorScheme='dark'>
+      <div>
+        
+      </div>
       <Toaster/>   
    
       <Router>
@@ -35,6 +38,11 @@ const App = () => {
           <Route path='/category/:categoryName/:listingId' element={<Listing/>}/>
           <Route path='/contact/:landLordId' element={<Contact/>}/>
         </Routes>
+        <div className=" fixed bottom-0 left-[50%] translate-x-[-50%] mb-2 md:hidden">
+          <SlidingTabBar/>
+
+
+        </div>
       </Router>
 
       
