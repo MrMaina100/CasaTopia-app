@@ -5,3 +5,13 @@
 .graylightText{
 @apply text-xs text-zinc-500
 }
+
+.ButtonActive{
+@apply bg-blue-600 rounded-2xl py-1.5 px-6 text-white
+
+}
+
+.FormButton{
+
+@apply dark:bg-gray-700 rounded-2xl py-1.5 px-6 
+}

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { db } from "../firebaseConfig"
-import { collection, getDocs, where, limit, query, startAfter, DocumentData } from "firebase/firestore"
+import { collection, getDocs, where, limit, query, DocumentData } from "firebase/firestore"
+import { Loader } from "@mantine/core"
 
 import ListingItem from "../Components/ListingItem"
 
@@ -57,19 +58,19 @@ const Offers = () => {
   },[])
   return (
     <div>
-      <h1>
+      <h1 className="font-bold text-xl">
         places on offer
       </h1>
 
       <div>
-        {loading ? <p>Loading...</p> : listing && listing.length > 0 ? <></>: <p>No listing for offers</p>}
+        {loading ? <Loader size={17}/> : listing && listing.length > 0 ? <></>: <p>No listing for offers</p>}
       </div>
 
-      <ul>
+      <div className="flex flex-col items-center mt-4 space-y-5  md:flex-row md:space-y-0 md:space-x-5 ">
         {listing.map((list)=>(
           <ListingItem key={list.id} listing={list.data} id={list.id}/>
         ))}
-      </ul>
+      </div>
     </div>
   )
 }
