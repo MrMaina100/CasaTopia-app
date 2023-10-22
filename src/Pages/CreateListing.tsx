@@ -8,6 +8,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { TextInput, Textarea,} from "@mantine/core"
 import Button from "../Components/Button"
 import { formData } from "../types";
+import { Loader,Paper } from "@mantine/core";
 
 type geoLocationType = {
    lat:number
@@ -224,19 +225,19 @@ const CreateListing = () => {
    }
 
    if(loading) {
-      return <p>loading...</p>
+      return <Loader size={15}/>
    }
 
   return (
-    <div>
+    <div className="flex flex-col space-y-5 justify-center items-center">
       <div>
-         <h1>Create a Listing</h1>
+         <h1 className="text-2xl font-bold ">Create a Listing</h1>
       </div>
 
-      <div>
+      <div className="mb-10 shadow-2xl md:px-20 pb-5">
          <form onSubmit={handleSubmt}>
-            <label >Sell/rent</label>
-           <div className="flex flex-row space-x-5">
+            <label htmlFor="type" >Sell/rent</label>
+           <div className="flex flex-row space-x-1">
           <button type="button" className={type === 'sale'? 'ButtonActive' : 'FormButton'} id="type" value='sale' onClick={mutate}>
                sell</button>
                <button type="button" className={type === 'rent'? 'ButtonActive' : 'FormButton'} id="type" value='rent' onClick={mutate}>
@@ -244,18 +245,19 @@ const CreateListing = () => {
            </div>
 
            {/* name of the listing */}
+           <label htmlFor="name">Name</label>
            <TextInput
            type="text"
            id="name"
            value={name}
            onChange={mutate}
-           label='name'
+         
            
            />
            {/* bedrooms */}
-           <div className="flex">
-            <div>
-               <label >Bedrooms</label>
+           <div className="flex space-x-1">
+            <div >
+               <label htmlFor="bedrooms" >Bedrooms</label>
                <TextInput
                type="number"
                 id="bedrooms"
@@ -265,7 +267,7 @@ const CreateListing = () => {
                />
             </div>
             <div>
-               <label >Bathrooms</label>
+               <label htmlFor="bathrooms">Bathrooms</label>
                <TextInput
                type="number"
                 id="bathrooms"
@@ -277,8 +279,8 @@ const CreateListing = () => {
            </div>
 
            {/* the parking  */}
-           <label >Parking spot</label>
-           <div className="flex flex-row space-x-5">
+           <label htmlFor="parking">Parking spot</label>
+           <div className="flex flex-row space-x-1">
           <button type="button" className={parking ? 'ButtonActive' : 'FormButton'} id="parking" value={'true'} onClick={mutate}>
                Yes</button>
 
@@ -291,15 +293,15 @@ const CreateListing = () => {
            {/* the furnishing */}
 
 
-            <label >Furnished</label>
-           <div className="flex flex-row space-x-5">
+            <label htmlFor="furnished">Furnished</label>
+           <div className="flex flex-row space-x-1">
           <button type="button" className={furnished ? 'ButtonActive' : 'FormButton'} id="furnished" value={'true'} onClick={mutate}>
                yes</button>
                <button type="button" className={!furnished && furnished !== null ? 'ButtonActive' : 'FormButton'} id="furnished" value={'false'} onClick={mutate}>
                No</button>
            </div>
 
-           <label >Address</label>
+           <label htmlFor="address" >Address</label>
            <Textarea
            id="address"          
            value={address}
@@ -309,7 +311,7 @@ const CreateListing = () => {
            {!geolocationEnabled && (
              <div className="flex space-x-5">
                <div>
-                  <label >Latitude</label>
+                  <label htmlFor="latitude" >Latitude</label>
                   <TextInput
                   type="number"
                   id="latitude"
@@ -321,7 +323,7 @@ const CreateListing = () => {
 
                {/* div 2 */}
                <div>
-                  <label>Longitude</label>
+                  <label htmlFor="longitude">Longitude</label>
                   <TextInput
                   type="number"
                   id="longitude"
@@ -338,8 +340,8 @@ const CreateListing = () => {
 
            {/* offers */}
 
-            <label >Offer</label>
-           <div className="flex flex-row space-x-5">
+            <label htmlFor="offer">Offer</label>
+           <div className="flex flex-row space-x-1">
              <button type="button" className={offer ? 'ButtonActive' : 'FormButton'} id="offer" value={'true'} onClick={mutate}>
                Yes</button>
                <button type="button" className={!offer && offer !== null ? 'ButtonActive' : 'FormButton'} id="offer" value={'false'} onClick={mutate}>
@@ -347,7 +349,7 @@ const CreateListing = () => {
            </div>
 
            {/* regular price */}
-           <label >regularPrice</label>
+           <label htmlFor="regularPrice" >regularPrice</label>
            <div className="flex items-center">
             <TextInput
             type="number"
@@ -366,12 +368,13 @@ const CreateListing = () => {
            {/* showing discounted price */}
            {offer && (
             <>
-            <label>Discounted Price</label>
+            <label htmlFor="discountedPrice">Discounted Price</label>
             <TextInput
             type="number"
             id="discountedPrice"
             value={discountedPrice}
             onChange={mutate}
+            className="w-1/2"
 
             
             />
@@ -381,8 +384,8 @@ const CreateListing = () => {
 
            {/* image upload */}
 
-           <label>Images</label>
-           <p>The first images uploaded will be the cover max is 6</p>
+           <label htmlFor="images">Images</label> <br />
+           
            <input
            type="file"
            id="images"                         
