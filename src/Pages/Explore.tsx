@@ -1,14 +1,16 @@
 import { Overlay } from "@mantine/core"
 import Header from "../Components/Header"
 import {BsHouses, BsHouseLock} from 'react-icons/bs'
-import { SlidingTabBar } from "../Components/Footer"
 import { Link } from "react-router-dom"
+import bgImg from '../assets/myBgImage.jpg'
 
 const Explore = () => {
+
+  const backGroundImg = bgImg
   return (
     <div>
       {/* div with the bg image */}
-      <div className="relative h-screen bg-hero bg-no-repeat bg-cover bg-center ">
+      <div className="relative h-screen  bg-no-repeat bg-cover bg-center " style={{backgroundImage: `url(${backGroundImg})`}}>
         <Overlay
           gradient="linear-gradient(180deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 700) 60%)"
         opacity={0.5}
