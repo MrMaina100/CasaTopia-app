@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { TextInput, Textarea,} from "@mantine/core"
 import Button from "../Components/Button"
 import { formData } from "../types";
-import { Loader,Paper } from "@mantine/core";
+import { Loader, } from "@mantine/core";
 
 type geoLocationType = {
    lat:number
