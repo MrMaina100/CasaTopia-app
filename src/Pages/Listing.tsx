@@ -6,7 +6,11 @@ import { useEffect, useState } from "react"
 import { Loader } from '@mantine/core';
 import { Link } from "react-router-dom"
 import Button from "../Components/Button"
-import {MapContainer, Marker, Popup, TileLayer} from 'react-leaflet'
+import {MapContainer, Marker, TileLayer} from 'react-leaflet'
+import { Carousel } from '@mantine/carousel';
+import {BsHouseCheckFill} from 'react-icons/bs'
+import{FaLocationDot,FaBed,FaBath,FaSquareCheck} from 'react-icons/fa6'
+
 
 const Listing = () => {
    const [listing, setListing] = useState<DocumentData| null>(null)
@@ -45,33 +49,73 @@ const Listing = () => {
 
    
   return (
-    <div>
+    <div className=" max-w-[1400px] mx-auto p-8">
       {/* slideshow yoooo */}
 
       {/* listng detail */}
-      <div>
+      <div className="mb-10">
        {listing !==null && (
-         <div>
-            <p>{listing.name}-${listing.offer ? listing.discountedPrice : listing.regularPrice}</p>
-            <p>{listing.location}</p>
-            <p>for {listing.type === 'rent' ? "Rent" : "Sale"}</p>
+
+         
+         <div className="flex flex-col space-y-2">
+            <Carousel height={350} controlSize={37} withIndicators className="w-full">
+               {listing.imageUrls.map((img:string)=>(
+                  <Carousel.Slide key={img} >
+                     <img src={img} alt="" className="h-full w-full object-cover " />
+                  </Carousel.Slide>
+               ))}
+            </Carousel>
+
+            <div className="flex flex-col space-y-2">
+               <div className="flex space-x-2 items-center">
+                  <BsHouseCheckFill/>
+                  <h1 className="font-bold text-2xl">{listing.name}-${listing.offer ? listing.discountedPrice : listing.regularPrice}</h1>
+               </div>
+               <div className="flex space-x-2 items-center">
+                  <FaLocationDot/>                  
+                 < p>{listing.location}</p>
+
+               </div>
+               <p>for {listing.type === 'rent' ? "Rent" : "Sale"}</p>
+               <div className="flex space-x-2 items-center">
+                  <FaBed/>
+                  <p>{listing.bedrooms > 1 ? `${listing.bedrooms}bedrooms`: '1 Bedroom'}</p>
+
+               </div>
+               <div className="flex space-x-2 items-center">
+                  <FaBath/>
+                <p>{listing.bathrooms > 1 ? `${listing.bathrooms}bathrooms`: '1 Bathroom'}</p>
+               </div>               
+                 {listing.parking ? (
+                     <div className="flex space-x-2 items-center">
+                          <FaSquareCheck/>
+                          <p>{listing.parking && 'Furnished'}</p>
+
+
+                     </div>
+
+                  ):'' }             
+
+                  {listing.furnished ? (
+                     <div className="flex space-x-2 items-center">
+                          <FaSquareCheck/>
+                          <p>{listing.furnished && 'Furnished'}</p>
+
+
+                     </div>
+
+                  ): '' }
+                
+                
+            </div>            
+            
           {
             listing.offer && (
                <p>
                   ${listing.regularPrice-listing.discountedPrice} discount
                </p>
             )
-          }
-
-          {/* listing details */}
-
-          <div>
-            <p>{listing.bedrooms > 1 ? `${listing.bedrooms}bedrooms`: '1 Bedroom'}</p>
-            <p>{listing.bathrooms > 1 ? `${listing.bathrooms}bathrooms`: '1 Bathroom'}</p>
-            <p>{listing.parking && 'Parking spot'}</p>
-            <p>{listing.furnished && 'Furnished'}</p>
-
-          </div>
+          }       
 
           {/* map location */}
           <div className="w-full h-48">
