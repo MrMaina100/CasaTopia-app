@@ -18,6 +18,7 @@ type geoLocationType = {
 
 
 const CreateListing = () => {
+    // eslint-disable-line
    const [geolocationEnabled, setGeoLocationEnabled] = useState(true)
    const [loading, setLoading] = useState(true)
    const [formData, setFormData]= useState<formData>({
@@ -138,6 +139,8 @@ const CreateListing = () => {
         case 'running':
         console.log('Upload is running');
         break;
+        default:
+         break
        }
      }, 
      (error) => {
