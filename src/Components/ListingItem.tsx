@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import {TrashIcon} from '@radix-ui/react-icons'
-import { Card, CardSection } from "@mantine/core"
+import { Card,  } from "@mantine/core"
 import { DocumentData } from "firebase/firestore"
 import {SlLocationPin} from 'react-icons/sl'
 

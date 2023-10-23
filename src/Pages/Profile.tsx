@@ -6,6 +6,7 @@ import { Link } from "react-router-dom"
 import { collection, getDocs, query, where, doc, deleteDoc, DocumentData  } from "firebase/firestore"
 import { db } from "../firebaseConfig"
 import ListingItem from "../Components/ListingItem"
+import { Card } from "@mantine/core"
 
 type ListingType = {
   id: string,
@@ -58,23 +59,27 @@ const Profile = () => {
 
   }
 
-  const onDelete = async (listingId:string)=>{
-    if(window.confirm('are you sure')){
-      await deleteDoc(doc(db, 'listings', listingId))
+  // const onDelete = async (listingId:string)=>{
+  //   if(window.confirm('are you sure')){
+  //     await deleteDoc(doc(db, 'listings', listingId))
 
-      const updatedListings = listings?.filter((list:DocumentData)=> list.id !==listingId)
-      setListings(updatedListings)
+  //     const updatedListings = listings?.filter((list:DocumentData)=> list.id !==listingId)
+  //     setListings(updatedListings)
 
-      // a toast should go here 
-    } 
+  //     // a toast should go here 
+  //   } 
 
-  }
+  // }
   return( 
-    <div>
-      <div className="flex justify-between">
-        <>
-           { user && user.displayName }
-        </>
+    <div className="px-4 pb-24">
+      <div className="flex justify-between items-center mt-2 mb-5">
+        <div className=" flex space-x-2 font-bold text-semibold">
+          <p>Welcome</p>          
+           <p>
+            { user && user.displayName }
+          </p>       
+          
+        </div>
 
         <Button type="button" onClick={handleLogout}>
           Logout
@@ -84,19 +89,18 @@ const Profile = () => {
       </div>
 
       <Link to='/createlisting'>
-        <p>sell or rent your home</p>
+        <Card className="w-56 rounded-xl">sell or rent your home</Card>
       </Link>
 
       {/* your homes */}
 
          
-
+      <p className="font-bold  mt-8">Your listings</p>
       {listings?.length > 0 &&(
-        <div>
-
-          <p>Your listings</p>
+        <div className="flex flex-col items-center space-y-4 md:flex-row md:space-x-5 ">
+          <p></p>        
           {listings?.map((list:DocumentData)=>(
-            <ListingItem onDelete={()=>onDelete(listings.id)} id={list.id} key={list.id} listing={list.data}/>
+            <ListingItem  id={list.id} key={list.id} listing={list.data}/>
 
 
           ))}

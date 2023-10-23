@@ -3,6 +3,7 @@ import { useParams, useSearchParams } from "react-router-dom"
 import { db } from "../firebaseConfig"
 import { doc,getDoc, DocumentData} from "firebase/firestore"
 import Button from "../Components/Button"
+import { Textarea } from "@mantine/core"
 
 const Contact = () => {
    const [message, setMessage] = useState('')
@@ -37,17 +38,17 @@ const Contact = () => {
    const handleChange = (e:ChangeEvent<HTMLTextAreaElement>)=> setMessage(e.target.value)
 
   return (
-    <div>
+    <div className="p-2 ">
       <p>Contact landlord</p>
 
       {landLord !== null&&(
-         <div>
-            <p>{landLord.name}</p>
-            <form >
+         <div >
+            <h1 className="font-bold text-lg">{landLord.name}</h1>
+            <form className="flex flex-col space-y-4" >
                <label htmlFor="message">Message</label>
-               <textarea name="message" id="message" value={message} onChange={handleChange}>
+               <Textarea name="message" id="message" value={message} onChange={handleChange} className="md:max-w-[50%]">
 
-               </textarea>
+               </Textarea>
 
                <a href={`mailto:${landLord.email}?subject=${searchParams.get('listingName')}&body=${message}`}>
                   <Button type="button">

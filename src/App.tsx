@@ -14,6 +14,7 @@ import Listing from './Pages/Listing';
 import Contact from './Pages/Contact';
 import {Toaster} from 'sonner'
 import { SlidingTabBar } from './Components/Footer';
+import '@mantine/carousel/styles.css';
 
 const App = () => {
   return (
@@ -38,7 +39,7 @@ const App = () => {
           <Route path='/category/:categoryName/:listingId' element={<Listing/>}/>
           <Route path='/contact/:landLordId' element={<Contact/>}/>
         </Routes>
-        <div className=" fixed bottom-0 left-[50%] translate-x-[-50%] mb-2 md:hidden">
+        <div className=" fixed bottom-0 left-[50%] translate-x-[-50%] mb-2 md:hidden" style={{ zIndex: 1000 }}>
           <SlidingTabBar/>
 
 

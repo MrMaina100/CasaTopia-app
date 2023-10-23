@@ -67,7 +67,7 @@ const Category = () => {
         {loading ? <Loader size={17}/> : listing && listing.length > 0 ? <></>: <p>No listing for {params.categoryname}</p>}
       </div>
 
-      <div  className="flex flex-col items-center mt-4 space-y-5  md:flex-row md:space-y-0 md:space-x-5 ">
+      <div  className="flex flex-col items-center mt-4 space-y-5  md:flex-row md:space-y-0 md:space-x-5 pb-24">
         {listing.map((list)=>(
           <ListingItem key={list.id} listing={list.data} id={list.id}/>
         ))}
