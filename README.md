@@ -10,12 +10,13 @@ A web application built with react and Firebase. Users can Signup using either t
 
 <h2>ScreenShots</h2>
 <div style="display: flex; ">
-<img src='https://github.com/MrMaina100/CasaTopia-app/assets/91890976/7eae0338-7ae5-450c-b80b-7e1168f4f798' width='30%' height='30%'  />
- <img src = 'https://github.com/MrMaina100/CasaTopia-app/assets/91890976/d32f8866-3e24-42f6-a17e-63785a1b1232' width='30%' height='30%' />
-<img src='https://github.com/MrMaina100/CasaTopia-app/assets/91890976/d3a5f393-6dcb-4d18-91ef-bf6cd9c9812b' width='30%' height='30%' />
+<img src='https://github.com/MrMaina100/CasaTopia-app/assets/91890976/4dfb15ce-c599-4ec5-962a-16aa7c7b29bb' width='30%' height='30%'  />
+ <img src = 'https://github.com/MrMaina100/CasaTopia-app/assets/91890976/be4cb150-55a0-4ce3-8e45-e8819e6e219e' width='30%' height='30%' />
+<img src='https://github.com/MrMaina100/CasaTopia-app/assets/91890976/dec37a9d-033f-4dc0-8446-9586f8737e22' width='30%' height='30%' />
 
 </div>
-<img src='https://github.com/MrMaina100/CasaTopia-app/assets/91890976/813564fd-4396-4c86-8b5e-736e6cd613db' width='30%' height='30%' />
+<img src='https://github.com/MrMaina100/CasaTopia-app/assets/91890976/fa47eec3-bc9f-452f-b1d5-d2d8f4f5d134' width='30%' height='30%' />
+
 
 ## Getting Started
 First, clone the repository and install the dependencies:
