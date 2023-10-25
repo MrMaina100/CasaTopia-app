@@ -1,27 +1,52 @@
-# React + TypeScript + Vite
+# CASATOPIA
+A web application built with react and Firebase. Users can Signup using either their email, google account or github account. After signing up users can create their own listings to sell or browse different properties and contanct the landlord about the lisitng they wish to purchase or rent..
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Stack
+- React
+- Typescript
+- FireBase
+- Tailwind Css
+- [mantine library](https://mantine.dev/)
 
-Currently, two official plugins are available:
+<h2>ScreenShots</h2>
+<div style="display: flex; ">
+<img src='https://github.com/MrMaina100/CasaTopia-app/assets/91890976/7eae0338-7ae5-450c-b80b-7e1168f4f798' width='30%' height='30%'  />
+ <img src = 'https://github.com/MrMaina100/CasaTopia-app/assets/91890976/d32f8866-3e24-42f6-a17e-63785a1b1232' width='30%' height='30%' />
+<img src='https://github.com/MrMaina100/CasaTopia-app/assets/91890976/d3a5f393-6dcb-4d18-91ef-bf6cd9c9812b' width='30%' height='30%' />
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+</div>
+<img src='https://github.com/MrMaina100/CasaTopia-app/assets/91890976/813564fd-4396-4c86-8b5e-736e6cd613db' width='30%' height='30%' />
 
-## Expanding the ESLint configuration
+## Getting Started
+First, clone the repository and install the dependencies:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+```bash
+git clone https://github.com/MrMaina100/CasaTopia-app.git
+cd CasaTopia-app
 
-- Configure the top-level `parserOptions` property like this:
+npm install
+# or
+yarn install
+# or
+pnpm install
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Then run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+```
+
+## Reaching out and contribution 
+if you would like to reach out about the project and request for features please do so and lets connect  mburumaina648@gmail.com. Contributions are welcome
+
+
+
+
+
+
